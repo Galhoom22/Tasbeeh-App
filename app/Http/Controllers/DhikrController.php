@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\DhikrRepositoryInterface;
+use App\Services\DhikrService;
 
 class DhikrController extends Controller
 {
-    protected $dhikrRepo;
+    protected $dhikrService;
 
-    public function __construct(DhikrRepositoryInterface $dhikrRepo)
+    public function __construct(DhikrService $dhikrService)
     {
-        $this->dhikrRepo = $dhikrRepo;
+        $this->dhikrService = $dhikrService;
     }
 
     public function index()
     {
-        $dhikrs = $this->dhikrRepo->all();
+        $dhikrs = $this->dhikrService->getAllDhikrs();
 
         return response()->json($dhikrs);
     }
