@@ -24,6 +24,21 @@ A production-ready application to perform and track Islamic Dhikr (remembrance o
 
 ---
 
+## 🏗️ Architecture | الهيكلة
+
+This project follows Clean Architecture principles:
+
+`Browser → Controller → Service → Repository → Model → Database`
+
+**Patterns Used:**
+
+-   ✅ MVC (Model-View-Controller)
+-   ✅ Repository Pattern (Data Access Layer)
+-   ✅ Service Pattern (Business Logic Layer)
+-   ✅ Dependency Injection (IoC Container)
+
+---
+
 ## 📦 Installation | التثبيت
 
 ```bash
