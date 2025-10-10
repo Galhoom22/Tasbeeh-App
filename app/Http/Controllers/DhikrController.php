@@ -15,6 +15,7 @@ class DhikrController extends Controller
 
     public function index()
     {
-        return view('dhikrs.index');
+        $dhikrs = $this->dhikrService->getAllDhikrs();
+        return view('dhikrs.index', compact('dhikrs'));
     }
 }
