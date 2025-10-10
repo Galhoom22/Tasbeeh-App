@@ -16,7 +16,6 @@ class DhikrController extends Controller
     public function index()
     {
         $dhikrs = $this->dhikrService->getAllDhikrs();
-
-        return response()->json($dhikrs);
+        return view('dhikrs.index', compact('dhikrs'));
     }
 }
