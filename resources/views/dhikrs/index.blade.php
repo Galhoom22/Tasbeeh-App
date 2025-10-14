@@ -82,124 +82,55 @@
         <!-- Page Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
             <div>
-                <h2 class="text-3xl font-bold mb-2">قائمة الأذكار</h2>
-                <p class="text-gray-600 dark:text-gray-400">إدارة وتتبع أذكارك اليومية</p>
+                <h2 class="text-3xl font-bold mb-2">{{ __('dhikrs.list_title') }}</h2>
+                <p class="text-gray-600 dark:text-gray-400">{{ __('dhikrs.page_subtitle') }}</p>
             </div>
             <a href="#"
                 class="inline-flex items-center justify-center px-6 py-3 bg-primary text-text-dark font-semibold rounded-full hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl">
                 <span class="material-symbols-outlined mr-2">add</span>
-                إضافة ذكر جديد
+                {{ __('dhikrs.add_new') }}
             </a>
         </div>
 
         <!-- Dhikrs Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Card 1 -->
-            <div
-                class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
+            @foreach ($dhikrs as $dhikr)
+                <!-- Card -->
                 <div
-                    class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-start justify-between mb-3">
-                        <span class="text-4xl">📿</span>
-                        <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                            33 مرة
-                        </span>
+                    class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <div
+                        class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
+                        <div class="flex items-start justify-between mb-3">
+                            <span class="text-4xl">📿</span>
+                            <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
+                                {{ $dhikr->target_count }} - {{ __('dhikrs.times') }}
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{{ $dhikr->text }}</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('dhikrs.target') }} -
+                            {{ $dhikr->target_count }}</p>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">سبحان الله</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">الهدف: 33</p>
-                </div>
-                <div class="p-6 space-y-3">
-                    <a href="#"
-                        class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
-                        <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
-                        ابدأ العد
-                    </a>
-                    <div class="flex gap-2">
+                    <div class="p-6 space-y-3">
                         <a href="#"
-                            class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">edit</span>
-                            تعديل
+                            class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
+                            <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
+                            {{ __('dhikrs.start_counting') }}
                         </a>
-                        <button
-                            class="flex-1 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">delete</span>
-                            حذف
-                        </button>
+                        <div class="flex gap-2">
+                            <a href="#"
+                                class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                <span class="material-symbols-outlined text-sm align-middle">edit</span>
+                                {{ __('dhikrs.edit') }}
+                            </a>
+                            <button
+                                class="flex-1 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                                <span class="material-symbols-outlined text-sm align-middle">delete</span>
+                                {{ __('dhikrs.delete') }}
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div
-                class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
-                <div
-                    class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-start justify-between mb-3">
-                        <span class="text-4xl">📿</span>
-                        <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                            33 مرة
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">الحمد لله</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">الهدف: 33</p>
-                </div>
-                <div class="p-6 space-y-3">
-                    <a href="#"
-                        class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
-                        <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
-                        ابدأ العد
-                    </a>
-                    <div class="flex gap-2">
-                        <a href="#"
-                            class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">edit</span>
-                            تعديل
-                        </a>
-                        <button
-                            class="flex-1 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">delete</span>
-                            حذف
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div
-                class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
-                <div
-                    class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-start justify-between mb-3">
-                        <span class="text-4xl">📿</span>
-                        <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                            34 مرة
-                        </span>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">الله أكبر</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400">الهدف: 34</p>
-                </div>
-                <div class="p-6 space-y-3">
-                    <a href="#"
-                        class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
-                        <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
-                        ابدأ العد
-                    </a>
-                    <div class="flex gap-2">
-                        <a href="#"
-                            class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">edit</span>
-                            تعديل
-                        </a>
-                        <button
-                            class="flex-1 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
-                            <span class="material-symbols-outlined text-sm align-middle">delete</span>
-                            حذف
-                        </button>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
 
     </main>
