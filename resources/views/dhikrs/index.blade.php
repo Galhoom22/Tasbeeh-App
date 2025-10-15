@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}"
+    class="{{ $theme == 'dark' ? 'dark' : '' }}">
 
 <head>
     <meta charset="utf-8">
@@ -45,8 +46,7 @@
     </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-display min-h-screen"
-    x-data="{ darkMode: true }" :class="{ 'dark': darkMode }">
+<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-display min-h-screen">
 
     <!-- Header -->
     <header class="border-b border-gray-200 dark:border-gray-800">
@@ -65,12 +65,14 @@
                     </a>
 
                     <!-- Dark Mode Toggle -->
-                    <button @click="darkMode = !darkMode"
+                    <a href="{{ route('theme.switch', ['theme' => $theme == 'dark' ? 'light' : 'dark']) }}"
                         class="flex items-center justify-center w-10 h-10 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors">
-                        <span x-show="darkMode" class="material-symbols-outlined text-lg text-primary">dark_mode</span>
-                        <span x-show="!darkMode"
-                            class="material-symbols-outlined text-lg text-primary">light_mode</span>
-                    </button>
+                        @if ($theme == 'dark')
+                            <span class="material-symbols-outlined text-lg text-primary">dark_mode</span>
+                        @else
+                            <span class="material-symbols-outlined text-lg text-primary">light_mode</span>
+                        @endif
+                    </a>
                 </div>
             </div>
         </div>
@@ -134,9 +136,6 @@
         </div>
 
     </main>
-
-    <!-- Alpine.js for Dark Mode -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 
 </html>

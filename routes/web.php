@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DhikrController;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\ProfileController;
 
@@ -19,5 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/locale/{locale}', [LocaleController::class, 'switchLanguage'])->name('locale.switch');
+Route::get('/theme/{theme}', [ThemeController::class, 'switchTheme'])->name('theme.switch');
 Route::get('/dhikrs', [DhikrController::class, 'index']);
 require __DIR__ . '/auth.php';
