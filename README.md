@@ -60,3 +60,10 @@ php artisan migrate --seed
 # Start development server
 php artisan serve
 ```
+---
+## 📸 Screenshots | لقطات الشاشة
+<img alt="light-english" src="https://github.com/user-attachments/assets/5fe3fc44-790c-43f8-9192-50f6d3cf05f6" />
+<img alt="light-arabic" src="https://github.com/user-attachments/assets/a2c57d98-e99e-4806-9a87-a03911bd7e1e" />
+<img alt="dark-english" src="https://github.com/user-attachments/assets/6e0f2ad1-d85b-4a9c-8062-f4fa5c457aab" />
+<img alt="dark-arabic" src="https://github.com/user-attachments/assets/2e8299b9-5609-4010-84ca-f3d8eeb5e443" />
+---
