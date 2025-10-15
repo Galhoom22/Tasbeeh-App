@@ -55,11 +55,11 @@
                 <h1 class="text-2xl font-bold">📿 Tasbeeh</h1>
                 <div class="flex items-center gap-3">
                     <!-- Language Switcher -->
-                    <a href="#"
+                    <a href="{{ route('locale.switch', ['locale' => 'en']) }}"
                         class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors">
                         EN
                     </a>
-                    <a href="#"
+                    <a href="{{ route('locale.switch', ['locale' => 'ar']) }}"
                         class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors bg-primary/20 text-primary">
                         AR
                     </a>
