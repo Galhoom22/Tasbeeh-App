@@ -56,11 +56,11 @@
                 <div class="flex items-center gap-3">
                     <!-- Language Switcher -->
                     <a href="{{ route('locale.switch', ['locale' => 'en']) }}"
-                        class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors">
+                        class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors {{ app()->getLocale() == 'en' ? 'bg-primary/20 text-primary' : '' }}">
                         EN
                     </a>
                     <a href="{{ route('locale.switch', ['locale' => 'ar']) }}"
-                        class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors bg-primary/20 text-primary">
+                        class="px-3 py-2 text-sm font-medium rounded-lg hover:bg-primary/10 transition-colors {{ app()->getLocale() == 'ar' ? 'bg-primary/20 text-primary' : '' }}">
                         AR
                     </a>
 
