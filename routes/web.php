@@ -19,7 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 Route::get('/locale/{locale}', [LocaleController::class, 'switchLanguage'])->name('locale.switch');
 Route::get('/theme/{theme}', [ThemeController::class, 'switchTheme'])->name('theme.switch');
-Route::get('/dhikrs', [DhikrController::class, 'index']);
+
+Route::get('/dhikrs/create', [DhikrController::class, 'create'])->name('dhikrs.create');
+Route::get('/dhikrs', [DhikrController::class, 'index'])->name('dhikrs.index');
+Route::post('/dhikrs', [DhikrController::class, 'store'])->name('dhikrs.store');
+
 require __DIR__ . '/auth.php';

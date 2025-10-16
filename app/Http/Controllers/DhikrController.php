@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\DhikrService;
+use App\Http\Requests\StoreDhikrRequest;
 
 class DhikrController extends Controller
 {
@@ -17,5 +18,18 @@ class DhikrController extends Controller
     {
         $dhikrs = $this->dhikrService->getAllDhikrs();
         return view('dhikrs.index', compact('dhikrs'));
+    }
+
+    public function store(StoreDhikrRequest $request)
+    {
+        $this->dhikrService->createDhikr($request->validated());
+
+        return redirect()->route('dhikrs.index')
+            ->with('success', __('dhikrs.created_successfully'));
+    }
+
+    public function create()
+    {
+        return view('dhikrs.create');
     }
 }
