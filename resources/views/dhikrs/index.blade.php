@@ -80,6 +80,14 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Session Success Message -->
+        @if (session('success'))
+            <div
+                class="bg-green-100 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-300 p-4 rounded-lg mb-6 flex items-center gap-3">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>{{ session('success') }}</span>
+            </div>
+        @endif
 
         <!-- Page Header -->
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
@@ -87,7 +95,7 @@
                 <h2 class="text-3xl font-bold mb-2">{{ __('dhikrs.list_title') }}</h2>
                 <p class="text-gray-600 dark:text-gray-400">{{ __('dhikrs.page_subtitle') }}</p>
             </div>
-            <a href="#"
+            <a href="{{ route('dhikrs.create') }}"
                 class="inline-flex items-center justify-center px-6 py-3 bg-primary text-text-dark font-semibold rounded-full hover:bg-primary/90 transition-colors shadow-lg hover:shadow-xl">
                 <span class="material-symbols-outlined mr-2">add</span>
                 {{ __('dhikrs.add_new') }}

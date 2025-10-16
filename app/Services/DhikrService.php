@@ -17,4 +17,9 @@ class DhikrService
     {
         return $this->dhikrRepo->all();
     }
+
+    public function createDhikr(array $data)
+    {
+        return $this->dhikrRepo->create($data);
+    }
 }
