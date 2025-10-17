@@ -45,4 +45,10 @@ class DhikrController extends Controller
         $this->dhikrService->updateDhikr($dhikr, $request->validated());
         return redirect()->route('dhikrs.index')->with('success', __('dhikrs.updated_successfully'));
     }
+
+    public function destroy(int $dhikr)
+    {
+        $this->dhikrService->deleteDhikr($dhikr);
+        return redirect()->route('dhikrs.index')->with('success', __('dhikrs.deleted_successfully'));
+    }
 }

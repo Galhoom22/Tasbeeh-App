@@ -44,9 +44,11 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-display min-h-screen">
+<body class="bg-background-light dark:bg-background-dark text-text-dark dark:text-text-light font-display min-h-screen"
+    x-data="{ showModal: false, dhikrToDelete: null }">
 
     <!-- Header -->
     <header class="border-b border-gray-200 dark:border-gray-800">
@@ -103,47 +105,102 @@
         </div>
 
         <!-- Dhikrs Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @foreach ($dhikrs as $dhikr)
-                <!-- Card -->
-                <div
-                    class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
-                    <div
-                        class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
-                        <div class="flex items-start justify-between mb-3">
-                            <span class="text-4xl">📿</span>
-                            <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                                {{ $dhikr->target_count }} - {{ __('dhikrs.times') }}
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{{ $dhikr->text }}</h3>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('dhikrs.target') }} -
-                            {{ $dhikr->target_count }}</p>
-                    </div>
-                    <div class="p-6 space-y-3">
-                        <a href="#"
-                            class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
-                            <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
-                            {{ __('dhikrs.start_counting') }}
-                        </a>
-                        <div class="flex gap-2">
-                            <a href="{{ route('dhikrs.edit', $dhikr->id) }}"
-                                class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                                <span class="material-symbols-outlined text-sm align-middle">edit</span>
-                                {{ __('dhikrs.edit') }}
-                            </a>
-                            <button
-                                class="flex-1 px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
-                                <span class="material-symbols-outlined text-sm align-middle">delete</span>
-                                {{ __('dhikrs.delete') }}
-                            </button>
-                        </div>
-                    </div>
+        @if ($dhikrs->isEmpty())
+            <div class="flex flex-col items-center justify-center py-16 px-4">
+                <div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+                    <span class="text-5xl">📿</span>
                 </div>
-            @endforeach
-        </div>
-
+                <h3 class="text-2xl font-bold mb-2">{{ __('dhikrs.no_dhikrs') }}</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">{{ __('dhikrs.add_first_dhikr') }}</p>
+                <a href="{{ route('dhikrs.create') }}"
+                    class="inline-flex items-center justify-center px-6 py-3 bg-primary text-text-dark font-semibold rounded-full hover:bg-primary/90 transition-colors shadow-lg">
+                    <span class="material-symbols-outlined mr-2">add</span>
+                    {{ __('dhikrs.add_new') }}
+                </a>
+            </div>
+        @else
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($dhikrs as $dhikr)
+                    <!-- Card -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-800 overflow-hidden">
+                        <div
+                            class="bg-gradient-to-br from-primary/20 to-primary/5 p-6 border-b border-gray-200 dark:border-gray-800">
+                            <div class="flex items-start justify-between mb-3">
+                                <span class="text-4xl">📿</span>
+                                <span class="px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
+                                    {{ $dhikr->target_count }} - {{ __('dhikrs.times') }}
+                                </span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">{{ $dhikr->text }}</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('dhikrs.target') }} -
+                                {{ $dhikr->target_count }}</p>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <a href="#"
+                                class="block w-full text-center px-4 py-3 bg-primary text-text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
+                                <span class="material-symbols-outlined text-sm align-middle mr-1">play_arrow</span>
+                                {{ __('dhikrs.start_counting') }}
+                            </a>
+                            <div class="flex gap-2">
+                                <a href="{{ route('dhikrs.edit', $dhikr->id) }}"
+                                    class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                                    <span class="material-symbols-outlined text-sm align-middle">edit</span>
+                                    {{ __('dhikrs.edit') }}
+                                </a>
+                                <form id="delete-form-{{ $dhikr->id }}"
+                                    action="{{ route('dhikrs.destroy', $dhikr->id) }}" method="POST" class="flex-1">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button"
+                                        @click="showModal = true; dhikrToDelete = {{ $dhikr->id }}"
+                                        class="w-full px-4 py-2 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 font-medium rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+                                        <span class="material-symbols-outlined text-sm align-middle">delete</span>
+                                        {{ __('dhikrs.delete') }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </main>
+    <!-- Delete Confirmation Modal -->
+    <div x-show="showModal"
+        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div
+            class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full border border-gray-200 dark:border-gray-800 transform transition-all">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-gray-200 dark:border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-red-600 dark:text-red-400">warning</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ __('dhikrs.delete_confirm') }}</h3>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6">
+                <p class="text-gray-600 dark:text-gray-400">
+                    {{ __('dhikrs.delete_warning') }}
+                </p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-gray-200 dark:border-gray-800 flex gap-3">
+                <button type="button" @click="showModal = false"
+                    class="flex-1 px-4 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    {{ __('dhikrs.cancel') }}
+                </button>
+                <button type="button" @click="document.getElementById('delete-form-' + dhikrToDelete).submit()"
+                    class="flex-1 px-4 py-2.5 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors shadow-lg">
+                    {{ __('dhikrs.delete') }}
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

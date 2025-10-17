@@ -26,6 +26,7 @@ Route::get('/theme/{theme}', [ThemeController::class, 'switchTheme'])->name('the
 Route::get('/dhikrs/create', [DhikrController::class, 'create'])->name('dhikrs.create');
 Route::get('/dhikrs/{dhikr}/edit', [DhikrController::class, 'edit'])->name('dhikrs.edit');
 Route::patch('/dhikrs/{dhikr}', [DhikrController::class, 'update'])->name('dhikrs.update');
+Route::delete('/dhikrs/{dhikr}', [DhikrController::class, 'destroy'])->name('dhikrs.destroy');
 Route::get('/dhikrs', [DhikrController::class, 'index'])->name('dhikrs.index');
 Route::post('/dhikrs', [DhikrController::class, 'store'])->name('dhikrs.store');
 
