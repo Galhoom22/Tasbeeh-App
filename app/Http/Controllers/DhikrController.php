@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\DhikrService;
 use App\Http\Requests\StoreDhikrRequest;
+use App\Http\Requests\UpdateDhikrRequest;
 
 class DhikrController extends Controller
 {
@@ -39,8 +40,9 @@ class DhikrController extends Controller
         return view('dhikrs.edit', compact('dhikr'));
     }
 
-    public function update(Dhikr $dhikr, StoreDhikrRequest $request)
+    public function update(int $dhikr, UpdateDhikrRequest $request)
     {
-        //
+        $this->dhikrService->updateDhikr($dhikr, $request->validated());
+        return redirect()->route('dhikrs.index')->with('success', __('dhikrs.updated_successfully'));
     }
 }

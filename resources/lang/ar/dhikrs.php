@@ -28,4 +28,7 @@ return [
     'target_count_placeholder' => '33',
     'target_count_help' => 'العدد المطلوب للذكر (من 1 إلى 1000)',
     'save_dhikr' => 'حفظ الذكر',
+    'edit_dhikr_title' => 'تعديل الذكر',
+    'edit_dhikr_subtitle' => 'تحديث معلومات الذكر',
+    'updated_successfully' => 'تم تحديث الذكر بنجاح'
 ];

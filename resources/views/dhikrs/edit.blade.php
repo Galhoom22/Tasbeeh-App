@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> {{ __('dhikrs.add_dhikr_title') }} - Tasbeeh</title>
+    <title> {{ __('dhikrs.edit_dhikr_title') }} - Tasbeeh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -92,8 +92,8 @@
 
         <!-- Page Header -->
         <div class="mb-8">
-            <h2 class="text-3xl font-bold mb-2">{{ __('dhikrs.add_new') }}</h2>
-            <p class="text-gray-600 dark:text-gray-400">{{ __('dhikrs.add_dhikr_subtitle') }}</p>
+            <h2 class="text-3xl font-bold mb-2">{{ __('dhikrs.edit_dhikr_title') }}</h2>
+            <p class="text-gray-600 dark:text-gray-400">{{ __('dhikrs.edit_dhikr_subtitle') }}</p>
         </div>
 
         <!-- Form Card -->
@@ -116,9 +116,10 @@
                 </div>
 
                 <!-- Form -->
-                <form action="{{ route('dhikrs.store') }}" method="POST" class="p-6 space-y-6">
+                <form action="{{ route('dhikrs.update', $dhikr->id) }}" method="POST" class="p-6 space-y-6">
                     @csrf
-                    @include('dhikrs._form', ['dhikr' => null])
+                    @method('PATCH')
+                    @include('dhikrs._form', ['dhikr' => $dhikr])
                 </form>
 
             </div>

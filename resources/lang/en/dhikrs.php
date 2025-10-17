@@ -28,4 +28,7 @@ return [
     'target_count_placeholder' => '33',
     'target_count_help' => 'Required count for the dhikr (from 1 to 1000)',
     'save_dhikr' => 'Save Dhikr',
+    'edit_dhikr_title' => 'Edit Dhikr',
+    'edit_dhikr_subtitle' => 'Update the dhikr information',
+    'updated_successfully' => 'Dhikr updated successfully'
 ];

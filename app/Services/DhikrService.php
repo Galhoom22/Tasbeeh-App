@@ -27,4 +27,9 @@ class DhikrService
     {
         return $this->dhikrRepo->find($id);
     }
+
+    public function updateDhikr(int $id, array $data)
+    {
+        return $this->dhikrRepo->update($id, $data);
+    }
 }
