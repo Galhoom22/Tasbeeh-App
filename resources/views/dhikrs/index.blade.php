@@ -127,7 +127,7 @@
                             {{ __('dhikrs.start_counting') }}
                         </a>
                         <div class="flex gap-2">
-                            <a href="#"
+                            <a href="{{ route('dhikrs.edit', $dhikr->id) }}"
                                 class="flex-1 text-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                                 <span class="material-symbols-outlined text-sm align-middle">edit</span>
                                 {{ __('dhikrs.edit') }}
