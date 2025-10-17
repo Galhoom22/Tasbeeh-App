@@ -30,5 +30,7 @@ return [
     'save_dhikr' => 'حفظ الذكر',
     'edit_dhikr_title' => 'تعديل الذكر',
     'edit_dhikr_subtitle' => 'تحديث معلومات الذكر',
-    'updated_successfully' => 'تم تحديث الذكر بنجاح'
+    'updated_successfully' => 'تم تحديث الذكر بنجاح',
+    'deleted_successfully' => 'تم حذف الذكر بنجاح',
+    'delete_warning' => 'لا يمكن التراجع عن هذا الإجراء. سيتم حذف الذكر نهائياً.'
 ];

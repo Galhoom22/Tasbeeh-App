@@ -30,5 +30,7 @@ return [
     'save_dhikr' => 'Save Dhikr',
     'edit_dhikr_title' => 'Edit Dhikr',
     'edit_dhikr_subtitle' => 'Update the dhikr information',
-    'updated_successfully' => 'Dhikr updated successfully'
+    'updated_successfully' => 'Dhikr updated successfully',
+    'deleted_successfully' => 'Dhikr deleted successfully',
+    'delete_warning' => 'This action cannot be undone. The dhikr will be permanently deleted.'
 ];

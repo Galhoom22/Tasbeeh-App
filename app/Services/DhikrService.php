@@ -32,4 +32,9 @@ class DhikrService
     {
         return $this->dhikrRepo->update($id, $data);
     }
+
+    public function deleteDhikr(int $id)
+    {
+        return $this->dhikrRepo->delete($id);
+    }
 }
