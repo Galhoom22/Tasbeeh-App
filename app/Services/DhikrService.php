@@ -22,4 +22,9 @@ class DhikrService
     {
         return $this->dhikrRepo->create($data);
     }
+
+    public function getDhikrById(int $id)
+    {
+        return $this->dhikrRepo->find($id);
+    }
 }

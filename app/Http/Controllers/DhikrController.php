@@ -32,4 +32,15 @@ class DhikrController extends Controller
     {
         return view('dhikrs.create');
     }
+
+    public function edit(int $dhikr)
+    {
+        $dhikr = $this->dhikrService->getDhikrById($dhikr);
+        return view('dhikrs.edit', compact('dhikr'));
+    }
+
+    public function update(Dhikr $dhikr, StoreDhikrRequest $request)
+    {
+        //
+    }
 }
