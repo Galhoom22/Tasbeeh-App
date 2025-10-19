@@ -20,15 +20,16 @@ class EloquentDhikrRepository implements DhikrRepositoryInterface
     {
         return Dhikr::create($data);
     }
-    public function update(int $id, array $data): bool
+    public function update(int $id, array $data): ?Dhikr
     {
         $dhikr = $this->find($id);
 
         if (!$dhikr) {
-            return false;
+            return null;
         }
 
-        return $dhikr->update($data);
+        $dhikr->update($data);
+        return $dhikr->fresh(); // Reload from DB
     }
     public function delete(int $id): bool
     {

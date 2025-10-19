@@ -18,16 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('dhikrs', DhikrController::class);
 });
 
 Route::get('/locale/{locale}', [LocaleController::class, 'switchLanguage'])->name('locale.switch');
 Route::get('/theme/{theme}', [ThemeController::class, 'switchTheme'])->name('theme.switch');
-
-Route::get('/dhikrs/create', [DhikrController::class, 'create'])->name('dhikrs.create');
-Route::get('/dhikrs/{dhikr}/edit', [DhikrController::class, 'edit'])->name('dhikrs.edit');
-Route::patch('/dhikrs/{dhikr}', [DhikrController::class, 'update'])->name('dhikrs.update');
-Route::delete('/dhikrs/{dhikr}', [DhikrController::class, 'destroy'])->name('dhikrs.destroy');
-Route::get('/dhikrs', [DhikrController::class, 'index'])->name('dhikrs.index');
-Route::post('/dhikrs', [DhikrController::class, 'store'])->name('dhikrs.store');
-
 require __DIR__ . '/auth.php';
