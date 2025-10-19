@@ -10,6 +10,6 @@ interface DhikrRepositoryInterface
     public function all(): Collection;
     public function find(int $id): ?Dhikr;
     public function create(array $data): Dhikr;
-    public function update(int $id, array $data): bool;
+    public function update(int $id, array $data): ?Dhikr;
     public function delete(int $id): bool;
 }
